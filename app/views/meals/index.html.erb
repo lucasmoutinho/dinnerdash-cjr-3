@@ -1,5 +1,6 @@
-<h1>Listing meals</h1>
- 
+<h1>Listando Refeições</h1>
+ <br>
+<div>
 <table>
   <tr>
     <th>Title</th>
@@ -15,6 +16,13 @@
       <td><%= meal.price %></td>
       <td><%= meal.category %></td>
       <td><%= link_to 'Show', meal_path(meal) %></td>
+      <td class="show"><%= link_to "Show", meal_path(meal.id) %></td>
+      <td class="apagar"><%= link_to "Apagar", meal_path(meal.id), method: :delete %></td>
+      <td class="editar"><%= link_to 'Editar', edit_meal_path(meal) %></td>
     </tr>
   <% end %>
 </table>
+</div>
+
+<%= link_to "Nova Refeição", new_meal_path %>
+

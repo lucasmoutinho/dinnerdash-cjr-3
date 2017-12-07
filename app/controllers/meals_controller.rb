@@ -20,7 +20,7 @@ class MealsController < ApplicationController
 		if @meal.save
 			redirect_to meals_path, notice: "Refeição cadastrada com sucesso!!"
 		else
-			redirect_to new_meal_path, notice: "Refeição Não pode ser salvo!"
+			redirect_to new_meal_path, notice: "Refeição Não pode ser salva"
 		end
 	end
 

@@ -1,7 +1,7 @@
 
 <h1>Nova Refeição</h1>
 <br>
-
+<div>
 <%= form_for @meal do |f| %>
   <% if @meal.errors.any? %>
     <div id="error_explanation">
@@ -39,9 +39,10 @@
  
  
   <p>
-    <%= f.submit "salvar", class: "btn btn-success"%>
+    <%= f.submit "salvar"%>
   </p>
 <% end %>
+</div>
  
-<%= link_to 'Back', meals_path %>
-<%= link_to "todas as refeições", meals_path %>
+<%= link_to 'Voltar', meals_path %><br>
+<%= link_to "Todas as refeições", meals_path %>
