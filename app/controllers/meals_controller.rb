@@ -5,11 +5,12 @@ class MealsController < ApplicationController
 
 
 	def show
-    @meal = meal.find(params[:id])
+   		@meal = meal.find(params[:id])
   	end
 
 
 	def new
+		 @meal = Meal.new
 	end
 
 	def create

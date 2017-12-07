@@ -1,4 +1,19 @@
-<%= form_with scope: :meal, url: articles_path, local: true do |form| %>
+<%= form_with scope: :meal, url: meals_path, local: true do |form| %>
+
+  <% if @meal.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@meal.errors.count, "error") %> prohibited
+        this meal from being saved:
+      </h2>
+      <ul>
+        <% @meal.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <p>
     <%= form.label :title %><br>
     <%= form.text_field :title %>
@@ -24,3 +39,5 @@
     <%= form.submit %>
   </p>
 <% end %>
+ 
+<%= link_to 'Back', meals_path %>
