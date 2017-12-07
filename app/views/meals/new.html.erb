@@ -1,5 +1,8 @@
-<%= form_with scope: :meal, url: meals_path, local: true do |form| %>
 
+<h1>Nova Refeição</h1>
+<br>
+
+<%= form_for @meal do |f| %>
   <% if @meal.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -15,29 +18,30 @@
   <% end %>
 
   <p>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
   </p>
  
   <p>
-    <%= form.label :description %><br>
-    <%= form.text_area :description %>
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
   </p>
 
   <p>
-    <%= form.label :price %><br>
-    <%= form.text_area :price %>
+    <%= f.label :price %><br>
+    <%= f.text_area :price %>
   </p>
 
   <p>
-    <%= form.label :category %><br>
-    <%= form.text_area :category %>
+    <%= f.label :category %><br>
+    <%= f.text_area :category %>
   </p>
  
  
   <p>
-    <%= form.submit %>
+    <%= f.submit "salvar", class: "btn btn-success"%>
   </p>
 <% end %>
  
 <%= link_to 'Back', meals_path %>
+<%= link_to "todas as refeições", meals_path %>
