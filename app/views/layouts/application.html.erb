@@ -3,22 +3,25 @@
   <head>
     <title>Dinnerdash</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <p class="notice alert-success"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <div class ="container">
-        <% if user_signed_in? %>
-          <%= link_to "Sair", destroy_user_session_path, method: :delete %> 
-        <% else %>
-          <%= link_to "Entrar", new_user_session_path %>
-          <%= link_to "Criar nova conta", new_user_registration_path %> 
-        <% end %>  
-      <%= yield %>
-    </div>
+    <% if notice %>
+      <p class="notice alert-success"><%= notice %></p>
+    <% elsif alert %>
+      <p class="alert alert-warning"><%= alert %></p>
+    <% end %>
+    <% unless current_page?(new_user_session_path) or current_page?(new_user_registration_path) %>
+      <% if user_signed_in? %>
+        <%= link_to "Sair", destroy_user_session_path, method: :delete %> 
+      <% else %>
+        <%= link_to "Entrar", new_user_session_path %>
+        <%= link_to "Criar nova conta", new_user_registration_path %> 
+      <% end %>
+    <% end %>  
+    
+    <%= yield %>
   </body>
 </html>

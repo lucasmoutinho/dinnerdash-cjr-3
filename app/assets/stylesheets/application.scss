@@ -1,4 +1,5 @@
 @import "bootstrap-sprockets";
+$enable-flex: true;
 @import "bootstrap";
 @import 'font-awesome';
 
@@ -11,6 +12,8 @@
 @import 'base/reusables';
 @import 'base/typography';
 @import 'base/unclassed';
+
+@import 'account';
 
 // @import 'components/*';
 
