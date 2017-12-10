@@ -9,14 +9,16 @@
   </head>
 
   <body>
-  		<p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-      <% if user_signed_in? %>
-        <%= link_to "Sair", destroy_user_session_path, method: :delete %> 
-      <% else %>
-        <%= link_to "Entrar", new_user_session_path %>
-        <%= link_to "Criar nova conta", new_user_registration_path %> 
-      <% end %>  
-    <%= yield %>
+    <p class="notice alert-success"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <div class ="container">
+        <% if user_signed_in? %>
+          <%= link_to "Sair", destroy_user_session_path, method: :delete %> 
+        <% else %>
+          <%= link_to "Entrar", new_user_session_path %>
+          <%= link_to "Criar nova conta", new_user_registration_path %> 
+        <% end %>  
+      <%= yield %>
+    </div>
   </body>
 </html>
