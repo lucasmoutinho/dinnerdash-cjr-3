@@ -1,0 +1,33 @@
+<div class="row account-screen">
+
+  <div class="col-sm-7 image"></div>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+  <div class="col-sm-5 sign-in">
+
+    <p class="logo col-sm-10 col-md-offset-1" >dinnerdash</p>
+        <div class="field col-sm-10 col-md-offset-1">
+          <%= f.label :email, class: "form-label"  %><br />
+          <%= f.email_field :email, autofocus: true, class: "form-control" %>
+        </div>
+
+        <div class="field col-sm-10 col-md-offset-1">
+          <%= f.label :senha, class: "form-label"  %><br />
+          <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+        </div>
+
+        <div class="actions col-sm-10 col-md-offset-1 ">
+          <br /><%= f.submit "fazer login", class: "btn btn-success btn-block"  %><br />
+        </div>
+        <div class="redirect-account">
+          <hr class = "line col-sm-10" >
+          <p class="question col-sm-10 col-md-offset-1">Não possui conta?</p>
+          <div class="actions col-sm-10 col-md-offset-1 ">
+            <%= link_to "fazer meu cadastro", new_user_registration_path, class: "btn btn-success btn-outline btn-block"%>
+          </div>
+        </div>
+  </div>
+
+  <% end %>
+</div>
