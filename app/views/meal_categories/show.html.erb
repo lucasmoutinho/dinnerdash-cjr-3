@@ -1,5 +1,29 @@
+<h1>
 <p>
-  <strong>Name:</strong>
   <%= @meal_category.name %>
 </p>
- 
+</h1>
+<h2> Refeições</h2>
+<% @meal_category.meals.each do |meal| %>
+	<p>
+	  <strong>Title:</strong>
+	  <%= meal.title %>
+	</p>
+	 
+	<p>
+	  <strong>Description:</strong>
+	  <%= meal.description %>
+	</p>
+
+	<p>
+	  <strong>Price:</strong>
+	  <%= meal.price %>
+	</p>
+
+<% end %>
+
+<h2>Adicionar uma refeição</h2>
+<%= render 'meals/form' %>
+
+<%= link_to 'Editar', edit_meal_category_path(@meal_category) %> |
+<%= link_to 'Voltar', meal_category_path %>

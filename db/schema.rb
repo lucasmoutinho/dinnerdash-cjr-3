@@ -10,32 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171215144023) do
+ActiveRecord::Schema.define(version: 20171215165555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "meal_categories", force: :cascade do |t|
-    t.string   "name"
+  create_table "meal_categories", id: :serial, force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "meals", force: :cascade do |t|
-    t.string   "title"
-    t.text     "description"
-    t.float    "price"
-    t.integer  "category"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.integer  "meal_categories_id"
-    t.index ["meal_categories_id"], name: "index_meals_on_meal_categories_id", using: :btree
+  create_table "meals", id: :serial, force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.float "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "meal_category_id"
+    t.index ["meal_category_id"], name: "index_meals_on_meal_category_id"
   end
 
-  create_table "orders", force: :cascade do |t|
+  create_table "orders", id: :serial, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "meals", "meal_categories", column: "meal_categories_id"
 end

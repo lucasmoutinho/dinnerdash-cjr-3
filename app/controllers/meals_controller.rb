@@ -14,21 +14,22 @@ class MealsController < ApplicationController
 	end
 
 	def create
-	  	puts "vim ate o create!!!!"
+	  	@meal_category = MealCategory.find(params[:meal_category_id])
 
-		@meal = Meal.new(meal_params)
+		@meal = @meal_category.meals.create(meal_params)
 		if @meal.save
-			redirect_to meals_path, notice: "Refeição cadastrada com sucesso!!"
+			redirect_to meal_categories_path, notice: "Refeição cadastrada com sucesso!!"
 		else
 			redirect_to new_meal_path, notice: "Refeição Não pode ser salva"
 		end
 	end
 
 		def destroy
-		@meal = Meal.find(params[:id])
+		@meal_category = MealCategory.find(params[:meal_category_id])
+		@meal = @meal_category.meals.find(params[:id])
 		@meal.delete
 
-		redirect_to meals_path, notice: "Refeição foi apagada"
+		redirect_to meal_category_path, notice: "Refeição foi apagada"
 	end
 
 	def edit
@@ -48,6 +49,6 @@ class MealsController < ApplicationController
  
 private
   def meal_params
-    params.require(:meal).permit(:title, :description, :price, :category)
+    params.require(:meal).permit(:title, :description, :price)
   end
 end

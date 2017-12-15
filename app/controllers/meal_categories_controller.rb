@@ -1,5 +1,6 @@
 class MealCategoriesController < ApplicationController
 	def index
+		
 	  @meal_categories = MealCategory.all
   	end	
 
@@ -28,7 +29,7 @@ class MealCategoriesController < ApplicationController
 		@meal_category = MealCategory.find(params[:id])
 		@meal_category.delete
 
-		redirect_to meal_categorys_path, notice: "Refeição foi apagada"
+		redirect_to meal_categories_path, notice: "Categoria foi apagada"
 	end
 
 	def edit
