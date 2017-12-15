@@ -19,11 +19,18 @@
 	  <strong>Price:</strong>
 	  <%= meal.price %>
 	</p>
-
+	<%= link_to 'Editar Refeição', edit_meal_category_meal_path(@meal_category, meal) %>
+	<p>
+	</p>
+	<p>
+		<%= link_to 'Apagar Refeição', [meal.meal_category, meal],
+			method: :delete,
+			data: {confirm: 'Você está certo disso?'} %>
+	</p>
 <% end %>
 
 <h2>Adicionar uma refeição</h2>
 <%= render 'meals/form' %>
 
 <%= link_to 'Editar', edit_meal_category_path(@meal_category) %> |
-<%= link_to 'Voltar', meal_category_path %>
+<%= link_to 'Voltar', meal_categories_path %>
