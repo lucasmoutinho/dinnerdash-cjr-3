@@ -4,14 +4,12 @@ body {
 	overflow-x: hidden;	
 }
 
-
-
 .account-screen {
 	overflow-y: hidden;
 	> .image {
 		height: 100vh;
 		background-image: url("account.jpg");
-		background-size: 150%;
+		background-size: cover;
 		background-repeat: no-repeat;
 		background-position: center;
 	}
@@ -26,6 +24,10 @@ body {
 		opacity: 0.85;
 		font-family: 'Amaranth';
 		margin-bottom: 0.5em;
+		text-decoration: none;
+	}
+	> .logo:hover {
+		opacity: 0.7;
 	}
 }
 
@@ -39,6 +41,10 @@ body {
 		font-family: 'Amaranth';
 		margin-bottom: 1em;
 		margin-top: 1em;
+		text-decoration: none;
+	}
+	> .logo:hover {
+		opacity: 0.7;
 	}
 }
 
@@ -64,6 +70,46 @@ body {
 	margin-bottom: 0.5em;
 	margin-top: 0.5em;
 }
+
+
+.edit-screen {
+		height: 100vh;
+	> .image {
+		height: 50vh;
+		background-image: url("perfil.jpg");
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	> .edit {
+		height: 50vh;
+		padding-top: 3em;
+		background-color: rgba(204, 204, 204, 0.15);
+	}
+}
+
+.image-text {
+	position: relative;
+	left: 4.5em;
+	top: 60%;
+	> .title {
+		font-size: 3.5em;
+		color: #fff;
+	}
+	> .subtitle {
+		font-size: 1.25em;
+		color: #fff;
+	}
+}
+
+.edit-label {
+	font-size: 14px;
+	color: #333333;
+	opacity: 0.7;
+	margin-bottom: 1em;
+}
+
+
 
 
 /*Extraído de https://bootsnipp.com/snippets/featured/bootstrap-outline-buttons*/

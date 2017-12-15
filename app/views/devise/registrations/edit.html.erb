@@ -1,43 +1,38 @@
-<h2>Editar <%= resource_name.to_s.humanize %></h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+<div class="edit-screen">
+  <div class="image">
+    <div class="image-text">
+      <p class="title">Seu Perfil</p>
+      <p class="subtitle">Atualize os seus dados pessoais e senha</p>
+    </div>
   </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+  <div class="edit">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :senha %> <i>(deixe em branco se não quiser mudá-la)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+      <div class="field col-sm-5 col-md-offset-1">
+        <span class="edit-label">Nome</span><br />
+        <%= f.text_field :username, autofocus: true, class: "form-control" %>
+      </div>
+
+      <div class="field col-sm-5">
+        <span class="edit-label">Email</span><br />
+        <%= f.email_field :email, autofocus: true, class: "form-control"%>
+      </div>
+
+      <div class="field col-sm-5 col-md-offset-1">
+        <br /><span class="edit-label">Nova senha (deixe em branco caso não queira alterar)</span><br />
+        <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+      </div>
+
+      <div class="field col-sm-5">
+        <br /><span class="edit-label">Senha atual, por questões de segurança</span><br />
+        <%= f.password_field :current_password, autocomplete: "off", class: "form-control"%>
+      </div>
+
+      <div class="actions col-sm-3 col-md-offset-1">
+        <br /><%= f.submit "atualizar meu perfil", class: "btn btn-success btn-block" %>
+      </div>
     <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :confirme_a_senha %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :senha_atual %> <i>(nós precisamos da sua senha atual para alterar suas informações)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Atualizar" %>
-  </div>
-<% end %>
-
-<h3>Cancelar minha conta</h3>
-
-<p>Insatisfeito? <%= button_to "Cancelar minha conta", registration_path(resource_name), data: { confirm: "Tem certeza?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>

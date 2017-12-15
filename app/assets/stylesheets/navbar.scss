@@ -1,0 +1,56 @@
+.nav-bar{
+	height: 0;
+	> .logo {
+		position: relative;
+		top: 0.25em;
+		left: 3em;
+		font-size: 28px;
+		color: #fff;
+		font-family: 'Amaranth';
+		text-decoration: none;
+	}
+	> .logo:hover {
+		opacity: 0.85;
+	}
+	> .options {
+		float: right;
+		position: relative;
+		top: 1.25em;
+		right: 3em;
+
+		> .link{
+			color: #fff;
+			text-decoration: none;
+			margin-right: 1em;
+		}
+		> .link:visited {
+			color: #fff;
+			text-decoration: none;
+		}
+		> .link:hover {
+			opacity: 0.85;
+			text-decoration: none;
+		}
+	}
+}
+
+.footer-bar{
+		height: 2.5em;
+		width: 100%;
+		background-color: rgba(204, 204, 204, 0.3);
+		position: absolute;
+		bottom: 0;
+		padding-top: 0.5em;
+	> .rights {
+		color: #333333;
+		font-size: 18px;
+		opacity: 0.75;
+	}
+	> .development {
+		color: #333333;
+		font-size: 14px;
+		opacity: 0.75;
+		margin-top: 2px;
+	}
+
+}
