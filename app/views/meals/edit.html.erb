@@ -2,7 +2,7 @@
  
  
 <div>
-<%= form_with(model: [ @meal_category, @meal_category.meals.build ], local:true )do |f| %>
+<%= form_for @meal do |f| %>
   <% if @meal.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -32,7 +32,11 @@
     <%= f.text_area :price %>
   </p>
 
- 
+  <p>
+    <%= f.label :categoria %>
+    <%= select_tag(:meal_category_id, options_from_collection_for_select(MealCategory.all.map, :id, :name)) %>
+  </p>
+
   <p>
     <%= f.submit "salvar"%>
   </p>

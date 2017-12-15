@@ -19,13 +19,13 @@ class MealCategoriesController < ApplicationController
 
 		@meal_category = MealCategory.new(meal_category_params)
 		if @meal_category.save
-			redirect_to meal_categories_path, notice: "Refeição cadastrada com sucesso!!"
+			redirect_to meal_categories_path, notice: "Categoria cadastrada com sucesso!!"
 		else
-			redirect_to new_meal_categories_path, notice: "Refeição Não pode ser salva"
+			redirect_to new_meal_categories_path, notice: "Categoria não pode ser salva"
 		end
 	end
 
-		def destroy
+	def destroy
 		@meal_category = MealCategory.find(params[:id])
 		@meal_category.delete
 

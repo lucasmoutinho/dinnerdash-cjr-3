@@ -28,7 +28,6 @@ class MealsController < ApplicationController
 		@meal = @meal_category.meals.create(meal_params)
 		if @meal.save
 			if params[:picture].present?
-	  	puts "vim ate o save!!!!"
 	  			preloaded = Cloudinary::PreloadedFile.new(params[:picture])         
 	  			raise "Invalid upload signature" if !preloaded.valid?
 	  			@meal.picture = preloaded.identifier
@@ -39,26 +38,25 @@ class MealsController < ApplicationController
 		end
 	end
 
-		def destroy
-		@meal_category = MealCategory.find(params[:meal_category_id])
-		@meal = @meal_category.meals.find(params[:id])
+	def destroy
+		@meal = Meal.find(params[:id])
 		@meal.destroy
 
-		redirect_to meal_category_path(@meal_category), notice: "Refeição foi apagada"
+		redirect_to meals_path, notice: "Refeição foi apagada"
 	end
 
 	def edit
-		@meal_category = MealCategory.find(params[:meal_category_id])
-	 	@meal = @meal_category.meals.find(params[:id])
+		@meal = Meal.find(params[:id])
+		@meal_category = @meal.meal_category
 	end
 
 
 	def update
-	  @meal_category = MealCategory.find(params[:meal_category_id])
-	  @meal = @meal_category.meals.find(params[:id])
-	 
+	  @meal = Meal.find(params[:id])
+	  @meal_category = @meal.meal_category
+
 	  if @meal.update(meal_params)
-	    redirect_to meal_category_path(@meal_category)
+	    redirect_to meals_path
 	  else
 	    render 'edit'
 	  end
