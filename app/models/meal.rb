@@ -1,3 +1,4 @@
 class Meal < ApplicationRecord
-	has_many :orders, :dependent => :destroy
+	belongs_to :meal_category
 end
+	

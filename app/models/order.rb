@@ -1,3 +1,3 @@
 class Order < ApplicationRecord
-	has_many :meals, :dependent => :destroy
+	has_many :meals
 end

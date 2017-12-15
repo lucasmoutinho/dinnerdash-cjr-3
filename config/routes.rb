@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   get 'welcome/index'
  
-  resources :meals
+  resources :meal_categories do
+  	resources :meals
+  end
  
   root 'welcome#index'
 end
