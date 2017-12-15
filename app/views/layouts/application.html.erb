@@ -18,9 +18,11 @@
             <%= link_to "dinnerdash", root_path, class: "logo"%>
         <% if user_signed_in? %>
           <div class="options">
-          <%= link_to "perfil", edit_user_registration_path, class: "link"%> 
+            <% if current_user.try(:admin?) %>
+              <%= link_to "backoffice", meals_path, class: "backoffice" %>
+            <% end %>
+            <%= link_to "perfil", edit_user_registration_path, class: "link"%> 
             <%= link_to "sair", destroy_user_session_path, method: :delete, class: "link"%> 
-            
           </div>
         <% else %>
           <div class="options">

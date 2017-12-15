@@ -31,6 +31,21 @@
 			opacity: 0.85;
 			text-decoration: none;
 		}
+
+
+		> .backoffice {
+			color: #fdcc00;
+			text-decoration: none;
+			margin-right: 1em;
+		}
+		> .backoffice:visited {
+			color: #fdcc00;
+			text-decoration: none;
+		}
+		> .backoffice:hover {
+			opacity: 0.85;
+			text-decoration: none;
+		}
 	}
 }
 

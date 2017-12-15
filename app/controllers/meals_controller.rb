@@ -1,4 +1,14 @@
 class MealsController < ApplicationController
+	before_action :authenticate_user!
+	before_action :require_admin
+
+
+	def require_admin
+  		unless current_user.try(:admin?)
+			redirect_to root_path, alert: "Você não tem autorização para acessar isso."
+  		end
+	end
+
 	def index
 	  @meals = Meal.all
   	end	
@@ -7,7 +17,6 @@ class MealsController < ApplicationController
 	def show
    		@meal =  Meal.find(params[:id])
   	end
-
 
 	def new
 		@meal = Meal.new
