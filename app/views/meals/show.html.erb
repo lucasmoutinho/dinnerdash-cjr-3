@@ -17,3 +17,4 @@
   <strong>Category:</strong>
   <%= @meal.category %>
 </p>
+	<% unless @meal.picture_url.nil? %><%= image_tag @meal.picture_url %><br /><% end %>

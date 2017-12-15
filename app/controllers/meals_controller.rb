@@ -23,10 +23,15 @@ class MealsController < ApplicationController
 	end
 
 	def create
-	  	puts "vim ate o create!!!!"
 
 		@meal = Meal.new(meal_params)
 		if @meal.save
+			if params[:picture].present?
+	  	puts "vim ate o save!!!!"
+	  			preloaded = Cloudinary::PreloadedFile.new(params[:picture])         
+	  			raise "Invalid upload signature" if !preloaded.valid?
+	  			@meal.picture = preloaded.identifier
+			end
 			redirect_to meals_path, notice: "Refeição cadastrada com sucesso!!"
 		else
 			redirect_to new_meal_path, notice: "Refeição Não pode ser salva"
@@ -57,6 +62,6 @@ class MealsController < ApplicationController
  
 private
   def meal_params
-    params.require(:meal).permit(:title, :description, :price, :category)
+    params.require(:meal).permit(:title, :description, :price, :category, :picture)
   end
 end

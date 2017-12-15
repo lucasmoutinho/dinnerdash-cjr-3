@@ -28,6 +28,8 @@ gem 'popper_js', '~> 1.12.3'
 gem 'font-awesome-rails'
 
 gem 'devise'
+gem 'carrierwave'
+gem 'cloudinary'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
