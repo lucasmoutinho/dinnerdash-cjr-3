@@ -6,7 +6,6 @@
     <th>Title</th>
     <th>Description</th>
     <th>Price</th>
-    <th>Category</th>
   </tr>
  
   <% @meals.each do |meal| %>
@@ -14,7 +13,6 @@
       <td><%= meal.title %></td>
       <td><%= meal.description %></td>
       <td><%= meal.price %></td>
-      <td><%= meal.category %></td>
       <td class="show"><%= link_to "Show", meal_path(meal.id) %></td>
       <td class="apagar"><%= link_to "Apagar", meal_path(meal.id), method: :delete %></td>
       <td class="editar"><%= link_to 'Editar', edit_meal_path(meal) %></td>
