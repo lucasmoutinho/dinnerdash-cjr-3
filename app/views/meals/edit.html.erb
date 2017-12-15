@@ -2,7 +2,7 @@
  
  
 <div>
-<%= form_for @meal do |f| %>
+<%= form_with(model: [ @meal_category, @meal_category.meals.build ], local:true )do |f| %>
   <% if @meal.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -32,11 +32,6 @@
     <%= f.text_area :price %>
   </p>
 
-  <p>
-    <%= f.label :category %><br>
-    <%= f.text_area :category %>
-  </p>
- 
  
   <p>
     <%= f.submit "salvar"%>
@@ -44,5 +39,5 @@
 <% end %>
 </div>
  
-<%= link_to 'Voltar', meals_path %><br>
-<%= link_to "Todas as refeições", meals_path %>
+<%= link_to 'Voltar', meal_category_path(@meal_category) %><br>
+<%= link_to "Todas as categorias", meal_categories_path %>

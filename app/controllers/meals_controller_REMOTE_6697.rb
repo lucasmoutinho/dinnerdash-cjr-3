@@ -1,14 +1,4 @@
 class MealsController < ApplicationController
-	before_action :authenticate_user!
-	before_action :require_admin
-
-
-	def require_admin
-  		unless current_user.try(:admin?)
-			redirect_to root_path, alert: "Você não tem autorização para acessar isso."
-  		end
-	end
-
 	def index
 	  @meals = Meal.all
   	end	
@@ -17,6 +7,7 @@ class MealsController < ApplicationController
 	def show
    		@meal =  Meal.find(params[:id])
   	end
+
 
 	def new
 		@meal = Meal.new
@@ -27,13 +18,7 @@ class MealsController < ApplicationController
 
 		@meal = @meal_category.meals.create(meal_params)
 		if @meal.save
-			if params[:picture].present?
-	  	puts "vim ate o save!!!!"
-	  			preloaded = Cloudinary::PreloadedFile.new(params[:picture])         
-	  			raise "Invalid upload signature" if !preloaded.valid?
-	  			@meal.picture = preloaded.identifier
-			end
-			redirect_to meals_path, notice: "Refeição cadastrada com sucesso!!"
+			redirect_to meal_category_path(@meal_category), notice: "Refeição cadastrada com sucesso!!"
 		else
 			redirect_to new_meal_path, notice: "Refeição Não pode ser salva"
 		end
@@ -66,6 +51,6 @@ class MealsController < ApplicationController
  
 private
   def meal_params
-    params.require(:meal).permit(:title, :description, :price, :picture)
+    params.require(:meal).permit(:title, :description, :price)
   end
 end

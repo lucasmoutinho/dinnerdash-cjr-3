@@ -23,10 +23,14 @@ class MealsController < ApplicationController
 	end
 
 	def create
+<<<<<<< HEAD
+=======
 	  	@meal_category = MealCategory.find(params[:meal_category_id])
+>>>>>>> origin/Developing_9-10-11
 
 		@meal = @meal_category.meals.create(meal_params)
 		if @meal.save
+<<<<<<< HEAD
 			if params[:picture].present?
 	  	puts "vim ate o save!!!!"
 	  			preloaded = Cloudinary::PreloadedFile.new(params[:picture])         
@@ -34,6 +38,9 @@ class MealsController < ApplicationController
 	  			@meal.picture = preloaded.identifier
 			end
 			redirect_to meals_path, notice: "Refeição cadastrada com sucesso!!"
+=======
+			redirect_to meal_category_path(@meal_category), notice: "Refeição cadastrada com sucesso!!"
+>>>>>>> origin/Developing_9-10-11
 		else
 			redirect_to new_meal_path, notice: "Refeição Não pode ser salva"
 		end
@@ -66,6 +73,10 @@ class MealsController < ApplicationController
  
 private
   def meal_params
-    params.require(:meal).permit(:title, :description, :price, :picture)
+<<<<<<< HEAD
+    params.require(:meal).permit(:title, :description, :price, :category, :picture)
+=======
+    params.require(:meal).permit(:title, :description, :price)
+>>>>>>> origin/Developing_9-10-11
   end
 end

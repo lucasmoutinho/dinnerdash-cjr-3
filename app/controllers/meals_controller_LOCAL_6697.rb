@@ -23,9 +23,8 @@ class MealsController < ApplicationController
 	end
 
 	def create
-	  	@meal_category = MealCategory.find(params[:meal_category_id])
 
-		@meal = @meal_category.meals.create(meal_params)
+		@meal = Meal.new(meal_params)
 		if @meal.save
 			if params[:picture].present?
 	  	puts "vim ate o save!!!!"
@@ -40,25 +39,22 @@ class MealsController < ApplicationController
 	end
 
 		def destroy
-		@meal_category = MealCategory.find(params[:meal_category_id])
-		@meal = @meal_category.meals.find(params[:id])
-		@meal.destroy
+		@meal = Meal.find(params[:id])
+		@meal.delete
 
-		redirect_to meal_category_path(@meal_category), notice: "Refeição foi apagada"
+		redirect_to meals_path, notice: "Refeição foi apagada"
 	end
 
 	def edit
-		@meal_category = MealCategory.find(params[:meal_category_id])
-	 	@meal = @meal_category.meals.find(params[:id])
+		@meal = Meal.find(params[:id])
 	end
 
 
 	def update
-	  @meal_category = MealCategory.find(params[:meal_category_id])
-	  @meal = @meal_category.meals.find(params[:id])
+	  @meal = Meal.find(params[:id])
 	 
 	  if @meal.update(meal_params)
-	    redirect_to meal_category_path(@meal_category)
+	    redirect_to @meal
 	  else
 	    render 'edit'
 	  end
@@ -66,6 +62,6 @@ class MealsController < ApplicationController
  
 private
   def meal_params
-    params.require(:meal).permit(:title, :description, :price, :picture)
+    params.require(:meal).permit(:title, :description, :price, :category, :picture)
   end
 end
