@@ -1,0 +1,35 @@
+.backoffice-page {
+	min-height: calc(100vh - 2.5em);
+}
+
+.backoffice-image {
+	height: 45vh;
+	width: 100vw;
+	background-image: url("backoffice.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.backoffice-options {
+	height: 7vh;
+	width: 100vw;
+	background-color: #444;
+	padding-left: 4em;
+	> .options {
+		position: relative;
+		top: 0.7em;
+		opacity: 0.75;
+		color: #fff;
+		margin-left: 1em;
+		margin-right: 1em;
+	}
+	> .options:hover {
+		text-decoration: none;
+		opacity: 1;
+	}
+	> .options-selected {
+		text-decoration: none;
+		opacity: 1;
+	}
+}
+

@@ -1,47 +1,49 @@
-<h1>Editar Refeição</h1>
- 
- 
-<div>
-<%= form_for @meal do |f| %>
-  <% if @meal.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@meal.errors.count, "error") %> prohibited
-        this meal from being saved:
-      </h2>
-      <ul>
-        <% @meal.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
+<div class="backoffice-page">  
+  <%= render 'layouts/backoffice' %>
+   
+   
+  <div>
+  <%= form_for @meal do |f| %>
+    <% if @meal.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(@meal.errors.count, "error") %> prohibited
+          this meal from being saved:
+        </h2>
+        <ul>
+          <% @meal.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <p>
+      <%= f.label :title %><br>
+      <%= f.text_field :title %>
+    </p>
+   
+    <p>
+      <%= f.label :description %><br>
+      <%= f.text_area :description %>
+    </p>
+
+    <p>
+      <%= f.label :price %><br>
+      <%= f.text_area :price %>
+    </p>
+
+    <p>
+      <%= f.label :categoria %>
+      <%= select_tag(:meal_category_id, options_from_collection_for_select(MealCategory.all.map, :id, :name)) %>
+    </p>
+
+    <p>
+      <%= f.submit "salvar"%>
+    </p>
   <% end %>
-
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </p>
- 
-  <p>
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </p>
-
-  <p>
-    <%= f.label :price %><br>
-    <%= f.text_area :price %>
-  </p>
-
-  <p>
-    <%= f.label :categoria %>
-    <%= select_tag(:meal_category_id, options_from_collection_for_select(MealCategory.all.map, :id, :name)) %>
-  </p>
-
-  <p>
-    <%= f.submit "salvar"%>
-  </p>
-<% end %>
+  </div>
+   
+  <%= link_to 'Voltar', meal_category_path(@meal_category) %><br>
+  <%= link_to "Todas as categorias", meal_categories_path %>
 </div>
- 
-<%= link_to 'Voltar', meal_category_path(@meal_category) %><br>
-<%= link_to "Todas as categorias", meal_categories_path %>
