@@ -1,26 +1,28 @@
 <div class="backoffice-page">
-
   <%= render 'layouts/backoffice' %>
 
-  <h1>Listando Categorias</h1>
-   <br>
-  <div>
-  <table>
-    <tr>
-      <th>Name</th>
-    </tr>
-   
-    <% @meal_categories.each do |meal_category| %>
-      <tr>
-        <td><%= meal_category.name %></td>
-        <td class="show"><%= link_to "Show", meal_category_path(meal_category.id) %></td>
-        <td class="apagar"><%= link_to "Apagar", meal_category_path(meal_category.id), method: :delete %></td>
-        <td class="editar"><%= link_to 'Editar', edit_meal_category_path(meal_category) %></td>
+  <div class="container">
+    <table class="table backoffice-table col-md-8">
+      <tr class="backoffice-theader">
+        <th>Nome</th>
+        <th>Número de Refeições</th>
+        <th>Cadastrada em</th>
+        <th></th>
+        <th></th>
       </tr>
-    <% end %>
-  </table>
+     
+      <% @meal_categories.each do |meal_category| %>
+        <tr class="backoffice-tbody">
+          <td><%= meal_category.name %></td>
+          <td><%= meal_category.meals.length%></td>
+          <td><%= meal_category.created_at.strftime("%d/%m/%Y")%></td>
+          <td><%= link_to 'editar', edit_meal_category_path(meal_category), class: "editar"%></td>
+          <td><%= link_to "excluir", meal_category_path(meal_category.id), method: :delete,  class: "excluir"%></td>
+        </tr>
+      <% end %>
+    </table>
+    <%= link_to "nova categoria de refeição", new_meal_category_path, class: "btn btn-success col-md-2 .col-md-offset-1" %>
   </div>
 
-  <%= link_to "Nova Categoria", new_meal_category_path %>
 
 </div>

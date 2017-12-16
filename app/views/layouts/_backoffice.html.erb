@@ -11,10 +11,10 @@
         <%= link_to "Pedidos", meals_path, class: "options" %>
       <% end %>
 
-      <% if current_page?(new_user_session_path) %>
-        <%= link_to "Usuários", meals_path, class: "options options-selected" %>
+      <% if current_page?(users_path) %>
+        <%= link_to "Usuários", users_path, class: "options options-selected" %>
       <% else %>
-        <%= link_to "Usuários", meals_path, class: "options" %>
+        <%= link_to "Usuários", users_path, class: "options" %>
       <% end %>
 
       <% if current_page?(meals_path) %>

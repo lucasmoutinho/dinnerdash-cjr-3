@@ -1,0 +1,27 @@
+<div class="backoffice-page">
+  <%= render 'layouts/backoffice' %>
+
+  <div class="container">
+    <table class="table backoffice-table col-md-8">
+      <tr class="backoffice-theader">
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Cadastrado em</th>
+        <th></th>
+        <th></th>
+      </tr>
+     
+      <% @users.each do |user| %>
+        <tr class="backoffice-tbody">
+          <td><%= user.username %></td>
+          <td><%= user.email %></td>
+          <td><%= user.created_at.strftime("%d/%m/%Y")%></td>
+          <td><%= link_to 'editar', edit_user_path(user), class: "editar"%></td>
+          <td><%= link_to "excluir", user_path(user.id), method: :delete,  class: "excluir"%></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+
+</div>

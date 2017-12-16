@@ -1,5 +1,6 @@
 .backoffice-page {
 	min-height: calc(100vh - 2.5em);
+
 }
 
 .backoffice-image {
@@ -33,3 +34,41 @@
 	}
 }
 
+.backoffice-table {
+	margin-top: 1.5em;
+	
+}
+.backoffice-theader {
+	background-color: #ddd;
+}
+.backoffice-tbody {
+	opacity: 0.75;
+}
+
+.editar {
+	color: #ffb90f;
+	text-decoration: none;
+}
+.editar:hover {
+	color: #ffb90f;
+	text-decoration: none;
+	opacity: 0.85;
+}
+.editar:visited {
+	color: #ffb90f;
+	text-decoration: none;
+}
+
+.excluir {
+	color: #c00000;
+	text-decoration: none;
+}
+.excluir:hover {
+	color: #c00000;
+	text-decoration: none;
+	opacity: 0.85;
+}
+.excluir:visited {
+	color: #c00000;
+	text-decoration: none;
+}
