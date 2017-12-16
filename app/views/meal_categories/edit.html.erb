@@ -2,9 +2,9 @@
  
   <%= render 'layouts/backoffice' %>
 
-  <h1>Editar Categoria</h1>
-   <br>
-  <div>
+  <div class="container">
+    <h3><small>Editar categoria de refeição</small></h3>
+    <hr class = "line col-sm-11 backoffice-line" >
   <%= form_for @meal_category do |f| %>
     <% if @meal_category.errors.any? %>
       <div id="error_explanation">
@@ -20,18 +20,22 @@
       </div>
     <% end %>
 
-    <p>
-      <%= f.label :name %><br>
-      <%= f.text_field :name %>
+    <p class="col-sm-6">
+        <%= f.label :nome, class: "form-label" %><br>
+        <%= f.text_field :name, autofocus: true, class: "form-control" %>
+    </p>
+    <p class="col-sm-6">
+        <%= f.label :cadastrado_em, class: "form-label" %><br>
+        <% created_at_string = f.object.created_at && f.object.created_at.strftime("%d/%m/%Y") %>
+        <%= f.text_field :created_at, :value=> created_at_string , class: "form-control", id: "disabledInput", disabled: true %>
     </p>
    
    
-    <p>
-      <%= f.submit "salvar"%>
-    </p>
-  <% end %>
+    <p class="col-sm-10">
+        <%= f.submit "atualizar categoria de refeição", class: "btn btn-success col-sm-3"%>
+        <%= link_to 'voltar', meal_categories_path, class: "btn btn-gray col-sm-2" %>
+      </p>
+    <% end %>
+
   </div>
-   
-  <%= link_to 'Voltar', meal_category_path %><br>
-  <%= link_to "Todas as categorias", meal_category_path %>
 </div>   

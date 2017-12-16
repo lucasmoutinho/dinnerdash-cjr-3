@@ -5,13 +5,14 @@
     </div>
   </div>
   <div class="backoffice-options">
+  //
       <% if current_page?(new_user_session_path) %>
         <%= link_to "Pedidos", meals_path, class: "options options-selected" %>
       <% else %>
         <%= link_to "Pedidos", meals_path, class: "options" %>
       <% end %>
 
-      <% if current_page?(users_path) %>
+      <% if current_page?(users_path)%>
         <%= link_to "Usuários", users_path, class: "options options-selected" %>
       <% else %>
         <%= link_to "Usuários", users_path, class: "options" %>
