@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dinnerdash-3
+  api_key: '676528862644857'
+  api_secret: EI4zqy7KtwlLySRpPpOR5MyisoY
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: dinnerdash-3
+  api_key: '676528862644857'
+  api_secret: EI4zqy7KtwlLySRpPpOR5MyisoY
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: dinnerdash-3
+  api_key: '676528862644857'
+  api_secret: EI4zqy7KtwlLySRpPpOR5MyisoY
+  enhance_image_tag: true
+  static_image_support: false
