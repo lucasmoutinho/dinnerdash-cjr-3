@@ -3,8 +3,8 @@
       <p class="title">Backoffice</p>
       <p class="subtitle">Gerencie pedidos, refeições e mais.</p>
     </div>
-  </div>
-  <div class="backoffice-options">
+</div>
+<div class="backoffice-options">
       <% if current_page?(new_user_session_path) %>
         <%= link_to "Pedidos", meals_path, class: "options options-selected" %>
       <% else %>
@@ -28,4 +28,4 @@
       <% else %>
         <%= link_to "Categorias de Refeição", meal_categories_index_path, class: "options" %>
       <% end %>
-  </div>
+</div>
