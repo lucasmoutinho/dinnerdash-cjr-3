@@ -1,3 +1,37 @@
 <div class="backoffice-page">
-  <%= render 'layouts/backoffice' %>
+  	<%= render 'layouts/backoffice' %>
+
+  	<div class="container">
+    	<h3><small>Editar usuário</small></h3>
+    	<hr class = "line col-sm-11 backoffice-line" >
+
+	  	<%= form_for @user do |f| %>
+
+			<p class="col-sm-6">
+		        <%= f.label :nome, class: "form-label" %><br>
+		        <%= f.text_field :username, class: "form-control" %>
+		    </p>
+		    <p class="col-sm-6">
+		      <%= f.label :perfil, class: "form-label"%>
+		      <%= f.select :admin, [["Administrador", true], ["Usuário", false]], {}, {class: "form-control"} %>
+		   </p>
+		    <p class="col-sm-6">
+		        <%= f.label :email, class: "form-label" %><br>
+		        <%= f.text_field :email, class: "form-control" %>
+		    </p>
+		    <p class="col-sm-6">
+		        <%= f.label :cadastrado_em, class: "form-label" %><br>
+		        <% created_at_string = f.object.created_at && f.object.created_at.strftime("%d/%m/%Y") %>
+		        <%= f.text_field :created_at, :value=> created_at_string , class: "form-control", id: "disabledInput", disabled: true %>
+		    </p>
+		   
+		   
+		    <p class="col-sm-10">
+		        <br><%= f.submit "atualizar usuário", class: "btn btn-success col-sm-3"%>
+		        <%= link_to 'voltar', users_path, class: "btn btn-gray col-sm-2" %>
+		      </p>
+
+	     <% end %>
+
+	</div>
 </div>

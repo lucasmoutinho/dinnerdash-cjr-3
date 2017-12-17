@@ -13,7 +13,12 @@
      
       <% @users.each do |user| %>
         <tr class="backoffice-tbody">
-          <td><%= user.username %></td>
+          <td>
+          <% if user.admin == true%>
+            <span class="label label-success">admin</span>
+          <% end %>
+          <%= user.username %>  
+          </td>
           <td><%= user.email %></td>
           <td><%= user.created_at.strftime("%d/%m/%Y")%></td>
           <td><%= link_to 'editar', edit_user_path(user), class: "editar"%></td>

@@ -19,7 +19,7 @@ class MealCategoriesController < ApplicationController
 
 		@meal_category = MealCategory.new(meal_category_params)
 		if @meal_category.save
-			redirect_to meal_categories_path, notice: "Categoria cadastrada com sucesso!!"
+			redirect_to meal_categories_path, notice: "Categoria cadastrada com sucesso."
 		else
 			redirect_to new_meal_categories_path, notice: "Categoria não pode ser salva"
 		end
@@ -29,7 +29,7 @@ class MealCategoriesController < ApplicationController
 		@meal_category = MealCategory.find(params[:id])
 		@meal_category.delete
 
-		redirect_to meal_categories_path, notice: "Categoria foi apagada"
+		redirect_to meal_categories_path, notice: "Categoria foi apagada."
 	end
 
 	def edit
@@ -41,7 +41,7 @@ class MealCategoriesController < ApplicationController
 	  @meal_category = MealCategory.find(params[:id])
 	 
 	  if @meal_category.update(meal_category_params)
-	    redirect_to @meal_category
+	    redirect_to  meal_categories_path, notice: "Categoria foi editada."
 	  else
 	    render 'edit'
 	  end

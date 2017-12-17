@@ -26,6 +26,7 @@ class MealsController < ApplicationController
 	  	@meal_category = MealCategory.find(params[:meal_category_id])
 
 		@meal = @meal_category.meals.create(meal_params)
+		@meal.available = true
 		if @meal.save
 			if params[:picture].present?
 	  			preloaded = Cloudinary::PreloadedFile.new(params[:picture])         
@@ -64,6 +65,6 @@ class MealsController < ApplicationController
  
 private
   def meal_params
-    params.require(:meal).permit(:title, :description, :price, :picture)
+    params.require(:meal).permit(:title, :description, :price, :picture, :available)
   end
 end
