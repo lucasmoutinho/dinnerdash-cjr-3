@@ -1,0 +1,11 @@
+.home-page{
+	min-height: calc(100vh - 2.5em);
+}
+.home-image {
+	height: 45vh;
+	width: 100vw;
+	background-image: url("home.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}

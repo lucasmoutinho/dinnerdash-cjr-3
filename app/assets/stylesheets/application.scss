@@ -1,4 +1,6 @@
-@import 'bootstrap';
+@import "bootstrap-sprockets";
+$enable-flex: true;
+@import "bootstrap";
 @import 'font-awesome';
 
 @import 'ambience/colors';
@@ -10,6 +12,11 @@
 @import 'base/reusables';
 @import 'base/typography';
 @import 'base/unclassed';
+
+@import 'account';
+@import 'navbar';
+@import 'backoffice';
+@import 'homepage';
 
 // @import 'components/*';
 

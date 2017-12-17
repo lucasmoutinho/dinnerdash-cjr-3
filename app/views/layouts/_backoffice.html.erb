@@ -1,0 +1,31 @@
+<div class="backoffice-image">
+    <div class="image-text">
+      <p class="title">Backoffice</p>
+      <p class="subtitle">Gerencie pedidos, refeições e mais.</p>
+    </div>
+</div>
+<div class="backoffice-options">
+      <% if current_page?(new_user_session_path) %>
+        <%= link_to "Pedidos", meals_path, class: "options options-selected" %>
+      <% else %>
+        <%= link_to "Pedidos", meals_path, class: "options" %>
+      <% end %>
+
+      <% if current_page?(users_path)%>
+        <%= link_to "Usuários", users_path, class: "options options-selected" %>
+      <% else %>
+        <%= link_to "Usuários", users_path, class: "options" %>
+      <% end %>
+
+      <% if current_page?(meals_path) %>
+        <%= link_to "Refeições", meals_path, class: "options options-selected" %>
+      <% else %>
+        <%= link_to "Refeições", meals_path, class: "options" %>
+      <% end %>
+
+      <% if current_page?(meal_categories_index_path) %>
+        <%= link_to "Categorias de Refeição", meal_categories_index_path, class: "options options-selected" %>
+      <% else %>
+        <%= link_to "Categorias de Refeição", meal_categories_index_path, class: "options" %>
+      <% end %>
+</div>

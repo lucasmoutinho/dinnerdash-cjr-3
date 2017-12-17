@@ -3,12 +3,41 @@
   <head>
     <title>Dinnerdash</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= cloudinary_js_config %>
   </head>
 
   <body>
+    <% if notice %>
+      <p class="notice alert-success"><%= notice %></p>
+    <% elsif alert %>
+      <p class="alert alert-warning"><%= alert %></p>
+    <% end %>
+    <% unless current_page?(new_user_session_path) or current_page?(new_user_registration_path) %>
+      <div class="nav-bar">
+            <%= link_to "dinnerdash", root_path, class: "logo"%>
+        <% if user_signed_in? %>
+          <div class="options">
+            <% if current_user.try(:admin?) %>
+              <%= link_to "backoffice", meals_path, class: "backoffice" %>
+            <% end %>
+            <%= link_to "perfil", edit_user_registration_path, class: "link"%> 
+            <%= link_to "sair", destroy_user_session_path, method: :delete, class: "link"%> 
+          </div>
+        <% else %>
+          <div class="options">
+            <%= link_to "entrar", new_user_session_path, class: "link"%>
+            <%= link_to "cadastro", new_user_registration_path, class: "link"%> 
+          </div>
+        <% end %>
+      </div>
+    <% end %>  
+    
     <%= yield %>
+      <div class="footer-bar row">
+        <span class="rights col-sm-7 col-md-offset-1">dinnerdash | todos os direitos reservados</span>
+        <span class="development col-sm-3 col-md-offset-1">desenvolvido por dinnerdash-3</span>
+      </div>
   </body>
 </html>
