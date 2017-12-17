@@ -1,0 +1,36 @@
+<div class="backoffice-page">
+
+  <%= render 'layouts/backoffice' %>
+
+  <div class="container">
+    <h3><small>Nova categoria de refeição</small></h3>
+    <hr class = "line col-sm-11 backoffice-line" >
+    <%= form_for @meal_category do |f| %>
+      <% if @meal_category.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@meal_category.errors.count, "error") %> prohibited
+            this meal_category.category from being saved:
+          </h2>
+          <ul>
+            <% @meal_category.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <p class="col-sm-10">
+        <%= f.label :nome, class: "form-label" %><br>
+        <%= f.text_field :name, autofocus: true, class: "form-control" %>
+      </p>
+     
+     
+      <p class="col-sm-10">
+        <%= f.submit "criar categoria de refeição", class: "btn btn-success col-sm-3"%>
+        <%= link_to 'voltar', meal_categories_path, class: "btn btn-gray col-sm-2" %>
+      </p>
+    <% end %>
+  </div>
+   
+</div>

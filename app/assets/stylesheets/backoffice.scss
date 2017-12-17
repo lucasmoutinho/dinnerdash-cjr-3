@@ -1,0 +1,84 @@
+.backoffice-page {
+	min-height: calc(100vh - 2.5em);
+
+}
+
+.backoffice-image {
+	height: 45vh;
+	width: 100vw;
+	background-image: url("backoffice.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.backoffice-options {
+	height: 7vh;
+	width: 100vw;
+	background-color: #444;
+	padding-left: 4em;
+	> .options {
+		position: relative;
+		top: 0.7em;
+		opacity: 0.75;
+		color: #fff;
+		margin-left: 1em;
+		margin-right: 1em;
+	}
+	> .options:hover {
+		text-decoration: none;
+		opacity: 1;
+	}
+	> .options-selected {
+		text-decoration: none;
+		opacity: 1;
+	}
+}
+
+.backoffice-table {
+	margin-top: 1.5em;
+	
+}
+.backoffice-theader {
+	background-color: #ddd;
+}
+.backoffice-tbody {
+	opacity: 0.75;
+}
+
+.editar {
+	color: #ffb90f;
+	text-decoration: none;
+}
+.editar:hover {
+	color: #ffb90f;
+	text-decoration: none;
+	opacity: 0.85;
+}
+.editar:visited {
+	color: #ffb90f;
+	text-decoration: none;
+}
+
+.excluir {
+	color: #c00000;
+	text-decoration: none;
+}
+.excluir:hover {
+	color: #c00000;
+	text-decoration: none;
+	opacity: 0.85;
+}
+.excluir:visited {
+	color: #c00000;
+	text-decoration: none;
+}
+
+.btn-gray {
+	margin-left: 1em;
+	background-color: #999;
+	color: #fff;
+}
+
+.backoffice-line {
+	margin-top: -0.5em;
+}

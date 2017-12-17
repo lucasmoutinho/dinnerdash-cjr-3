@@ -14,6 +14,10 @@
 </p>
 
 <p>
-  <strong>Category:</strong>
-  <%= @meal.category %>
+  <strong>Categoria:</strong>
+  <%= @meal.meal_category.id %>
+  <%= @meal.meal_category.name %>
 </p>
+
+	<% unless @meal.picture_url.nil? %><%= image_tag @meal.picture_url %><br /><% end %>
+

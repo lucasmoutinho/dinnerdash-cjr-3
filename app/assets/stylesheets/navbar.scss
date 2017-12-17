@@ -31,6 +31,20 @@
 			opacity: 0.85;
 			text-decoration: none;
 		}
+
+		> .backoffice {
+			color: #fdcc00;
+			text-decoration: none;
+			margin-right: 1em;
+		}
+		> .backoffice:visited {
+			color: #fdcc00;
+			text-decoration: none;
+		}
+		> .backoffice:hover {
+			opacity: 0.85;
+			text-decoration: none;
+		}
 	}
 }
 
@@ -38,8 +52,6 @@
 		height: 2.5em;
 		width: 100%;
 		background-color: rgba(204, 204, 204, 0.3);
-		position: absolute;
-		bottom: 0;
 		padding-top: 0.5em;
 	> .rights {
 		color: #333333;
