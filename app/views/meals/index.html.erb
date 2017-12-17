@@ -2,26 +2,24 @@
   <%= render 'layouts/backoffice' %>
 
 
-  <div class="backoffice-content">
-    <table>
-      <tr>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Price</th>
-      </tr>
-     
+  <div class="container">  
+    <div>
       <% @meals.each do |meal| %>
-        <tr>
-          <td><%= meal.title %></td>
-          <td><%= meal.description %></td>
-          <td><%= meal.price %></td>
-          <td class="show"><%= link_to "Show", meal_path(meal.id) %></td>
-          <td class="apagar"><%= link_to "Apagar", meal_path(meal.id), method: :delete %></td>
-          <td class="editar"><%= link_to 'Editar', edit_meal_path(meal) %></td>
-        </tr>
+        <div class="backoffice-meal panel panel-default">
+          <%= cl_image_tag(meal.picture, :crop => :fill, :height => 180, class: "image-meal") %>
+          <div class="name"><%= meal.title %></div>
+          <div class="body">
+            <p class="description"><%= meal.description %></p>
+            <p class="price"><%= number_to_currency(meal.price, :unit => "R$ ", :separator => ",", :delimiter => ".") %> por porção</p>
+            <p><%= link_to 'editar', edit_meal_path(meal), class: "btn btn-sm btn-warning opt-meal" %>
+            <%= link_to "apagar", meal_path(meal.id), method: :delete, class: "btn btn-sm btn-danger opt-meal" %></p>
+          </div>
+        </div>
       <% end %>
-    </table>
-    <%= link_to "Nova Refeição", new_meal_path %>
+    </div>
+    <br>
+    <%= link_to "nova refeição", new_meal_path, class: "meal-button btn btn-success col-md-2 .col-md-offset-1" %>
   </div>
+    <br>
 </div>
 
