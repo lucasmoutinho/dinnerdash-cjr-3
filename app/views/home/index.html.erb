@@ -1,10 +1,56 @@
 <div class="home-page">
 	<div class="home-image">
 	    <div class="image-text">
-	      <p class="title">Monte seu prato</p>
-	      <p class="subtitle">Escolha sua salada, molho, prato principal, guarnição e bebida.</p>
+			<% if user_signed_in? %>
+				<p class="title">Bem vindo,  <%= current_user.username %></p>
+		    	<p class="subtitle">Monte seu prato, escolha sua salada, <br> molho, prato principal, guarnição e bebida.</p>
+			<% else %>
+		    	<p class="title">Monte seu prato</p>
+		    	<p class="subtitle">Escolha sua salada, molho, prato principal, guarnição e bebida.</p>
+			<% end %>
 	    </div>
-	</div>		
-	<h1>Home#index</h1>
-	<p>Cor temporária para visualizar o header.</p><br><i>Find me in app/views/home/index.html.erb</i>
+	</div>
+	<div class="container home-body">
+		<% @categories.each do |category| %>
+			<p class="category"><%= category.name %></p>
+
+			<% @meals.each do |meal| %>
+				<% if category.id == meal.meal_category_id %>
+			        <% unless meal.available == false %>
+			        <div class="show-meal panel panel-default">
+			          <%= cl_image_tag(meal.picture, :crop => :fill, :height => 180, class: "image-meal") %>
+			          	<div class="name"><%= meal.title %></div>
+			          	<div class="body">
+			            	<p class="description"><%= meal.description %></p>
+			            	<p class="price"><%= number_to_currency(meal.price, :unit => "R$ ", :separator => ",", :delimiter => ".") %> por porção</p>
+			            	<p class="description">Quantidade</p>
+			            	<!-- Só por questões de visualização e facilidade NÃO ESTÁ PRONTO-->
+			            	<%= form_for meal do |f| %>
+			            		<%= f.select :available, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], ["8", 8]], {}, {class: "form-control"} %>
+			            	<% end %>
+			            	<%= link_to "adicionar ao meu prato", root_path, class: "btn btn-sm btn-success col-md-12 adicionar" %>
+			          </div>
+			        </div>
+			        <% end %>
+				<% end %>
+		      <% end %>
+		<% end %>
+	</div>
+	<div class="home-finish">
+	<hr>		
+		<div class="finish-body container">
+			<p class="caption">Finalizou o seu prato?</p>
+			<p class="subcaption">Confira os itens adicionados antes de finalizar o pedido.</p>
+			<hr>
+			<p class="caption">Preço total do pedido: </p>
+			<% if user_signed_in? %>
+				<%= link_to 'finalizar e pagar', root_path, class: "btn btn-sm btn-success col-sm-2 button" %>
+			<% else %>
+				<p class="subcaption">Para finalizar o pedido, entre com sua conta ou faça o seu cadastro.</p>
+				<%= link_to "entrar com minha conta", new_user_session_path, class: "btn btn-sm btn-success col-sm-3 button"%>
+				<%= link_to "fazer meu cadastro", new_user_registration_path, class: "btn btn-sm btn-success btn-outline col-sm-3 button"%>
+			<% end %>
+
+		</div>
+	</div>
 </div>

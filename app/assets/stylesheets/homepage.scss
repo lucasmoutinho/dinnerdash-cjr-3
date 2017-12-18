@@ -1,11 +1,55 @@
 .home-page{
 	min-height: calc(100vh - 2.5em);
+	background-color: rgba(204, 204, 204, 0.15);
 }
 .home-image {
-	height: 45vh;
+	height: 55vh;
 	width: 100vw;
 	background-image: url("home.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
+	padding-bottom: 0.5em;
+}
+
+.home-body {
+	padding-top: 1em;
+
+	> .category {
+		color: #333;
+		opacity: 0.75;
+		font-size: 28px;
+		clear: left;
+	}
+}
+
+.show-meal {
+	> .body {
+		> .adicionar {
+			margin-top: 1em;
+			margin-bottom: 1em;
+		}
+	}
+}
+
+.home-finish {
+		background-color: #fff;
+	> .finish-body{
+		> .caption {
+			color: #333;
+			opacity: 0.75;
+			font-size: 28px;
+			clear: left;
+		}
+		> .subcaption {
+			font-size: 16px;
+			color: #333333;
+			opacity: 0.65;
+		}
+		> .button {
+			margin-top: 1em;
+			margin-right: 1em;
+			margin-bottom: 3em;
+		}
+	}
 }
