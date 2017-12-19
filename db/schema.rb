@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20171217000717) do
     t.float "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "meal_category_id"
+    t.integer "meal_category_id"
     t.string "picture"
     t.boolean "available"
     t.index ["meal_category_id"], name: "index_meals_on_meal_category_id"
