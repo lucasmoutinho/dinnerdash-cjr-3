@@ -5,5 +5,8 @@ class Meal < ApplicationRecord
 	has_many :cart_items
 	has_many :carts, :through => :cart_items
 
+	default_scope { where(active: true) } #Garante que pratos inativos ou deletados não sejam adicionados. 
+
+
 end
 	

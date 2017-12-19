@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   		resources :meals
   	end
 
-  	resources :carts
+  	resource :cart, only: [:show]
+  	resources :cart_items, only: [:create, :update, :destroy]
+  
  
 end

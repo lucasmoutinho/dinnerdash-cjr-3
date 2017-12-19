@@ -1,6 +1,6 @@
 class Cart < ApplicationRecord
 	has_many :cart_items
-	has_many :books, :through => :cart_items
+	has_many :meals, :through => :cart_items
 
 	def add_meal(meal_params)
 		current_item = cart_items.find_by(meal_id: meal_params[:meal][:meal_id])
