@@ -1,14 +1,14 @@
 class CartItemsController < ApplicationController
-	before_action :set_cart, only: [:create, :destroy]
+	before_action :set_current_cart
 
 	def create
 		@cart.add_meal(params)
 
 		if @cart.save
-			redirect_to home_path
+			redirect_to root_path
 		else 
 			flash[:error] = 'There was a problem adding this item to your cart'
-			redirect_to home_path
+			redirect_to root_path
 		end
 	end
 
@@ -44,7 +44,7 @@ class CartItemsController < ApplicationController
 		end
 
 		def cart_item_params
-			params.require(:cart_item).permit(:meal_id, :cart_id, :quantity)
+			params.require(:cart_item).permit(:meal_id, :cart_id, :price, :quantity)
 		end	
 
 
