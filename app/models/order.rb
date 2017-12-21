@@ -3,10 +3,10 @@ class Order < ApplicationRecord
 	has_many :meals, :through => :order_has_meals
 	belongs_to :user
   before_save :price_sum, only: [:add_meal]
-  before_action :authenticate_user!, only: [:finalize_order]
-  after_initiliaze :init
-  require_user :finalize_order
-  require_admin [:add_meal, :destroy_meal, :remove_meal] if self.status != 1 
+  #before_action :authenticate_user!, only: [:finalize_order]
+  #after_initiliaze :init
+  #require_user :finalize_order
+  #require_admin [:add_meal, :destroy_meal, :remove_meal] if self.status != 1 
 
 	def add_meal(meal_params, how_many_more) #Howmanymore é um inteiro passado na chamada do método
 		@current_order_item = self.order_has_meals.find_by(meal_id: meal_params[:id])

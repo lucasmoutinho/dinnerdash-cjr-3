@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   def index
   	@categories = MealCategory.all
   	@meals = Meal.all
-
+  	@order = set_current_order
   end
 
 end
