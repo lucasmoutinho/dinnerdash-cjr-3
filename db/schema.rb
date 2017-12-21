@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171221121101) do
+ActiveRecord::Schema.define(version: 20171221141717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "OrderHasMeals", force: :cascade do |t|
+    t.decimal "price"
+    t.integer "quantity"
+    t.datetime "created_at"
+    t.bigint "meal_id"
+    t.bigint "order_id"
+    t.index ["meal_id"], name: "index_OrderHasMeals_on_meal_id"
+    t.index ["order_id"], name: "index_OrderHasMeals_on_order_id"
+  end
 
   create_table "meal_categories", id: :serial, force: :cascade do |t|
     t.string "name"
@@ -24,31 +34,21 @@ ActiveRecord::Schema.define(version: 20171221121101) do
   create_table "meals", id: :serial, force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.float "price"
+    t.decimal "price"
+    t.integer "available"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "meal_category_id"
+    t.bigint "meal_category_id"
     t.string "picture"
-    t.boolean "available"
     t.index ["meal_category_id"], name: "index_meals_on_meal_category_id"
   end
 
-  create_table "order_has_meals", force: :cascade do |t|
-    t.decimal "price"
-    t.integer "quantity"
-    t.datetime "created_at"
-    t.bigint "meal_id"
-    t.bigint "order_id"
-    t.index ["meal_id"], name: "index_order_has_meals_on_meal_id"
-    t.index ["order_id"], name: "index_order_has_meals_on_order_id"
-  end
-
   create_table "orders", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.decimal "price"
     t.integer "status"
     t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -72,6 +72,6 @@ ActiveRecord::Schema.define(version: 20171221121101) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  add_foreign_key "order_has_meals", "meals"
-  add_foreign_key "order_has_meals", "orders"
+  add_foreign_key "OrderHasMeals", "meals"
+  add_foreign_key "OrderHasMeals", "orders"
 end

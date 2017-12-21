@@ -1,10 +1,11 @@
 class OrderHasMealsController < ApplicationController
 	before_action :set_current_order
 
-	def create
-		@order.add_meal(params)
 
-		if @order.save
+	def create
+		@_current_order.add_meal(params)
+
+		if @_current_order.save
 			redirect_to root_path
 		else 
 			flash[:error] = 'There was a problem adding this item to your order'
