@@ -1,8 +1,18 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_action :set_current_order
 
 #adicionado seguindo o howto na wiki do deviser sobre username/email
   before_action :configure_permitted_parameters, if: :devise_controller?
+
+  def set_current_order
+    if @_current_order ||= session[:current_order_id] &&
+       Order.find(session[:current_order_id])
+      @_current_order
+    else
+      @_current_order = Order.new
+    end
+  end
 
   protected
 
