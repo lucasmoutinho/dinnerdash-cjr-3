@@ -5,6 +5,7 @@ class CreateMeals < ActiveRecord::Migration[5.0]
       t.text :description
       t.decimal :price
       t.boolean :available
+      t.string  :picture
       t.timestamps
     end
   end

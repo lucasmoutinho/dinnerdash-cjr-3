@@ -1,18 +1,6 @@
 class OrderHasMealsController < ApplicationController
 	before_action :set_current_order
 
-
-	def create
-		@_current_order.add_meal(params)
-
-		if @_current_order.save
-			redirect_to root_path
-		else 
-			flash[:error] = 'There was a problem adding this item to your order'
-			redirect_to root_path
-		end
-	end
-
 	def destroy
 		@order_has_meal.destroy
 		redirect_to order_path

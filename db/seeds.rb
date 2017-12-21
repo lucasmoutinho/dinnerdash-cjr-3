@@ -22,8 +22,8 @@ Meal.create!(title:"Panqueca de Carne do Chef", description: "Tradição de Fam�
 Meal.create!(title:"Salada de Folhas Tropicais", description: "Daqui da região mesmo", price:"16,99",
              meal_category_id: MealCategory.find_by(name: 'Entradas'))
 Meal.create!(title:"Anéis de Cebola Frita com Queijo", description: "Porção individual", price:"9,99",
-             meal_category_id: MealCategory.find_by(name: 'Carnes'))
+             meal_category_id: MealCategory.find_by(name: 'Entradas'))
 Meal.create!(title:"Cordeiro", description: "Porção para dois", price:"49,99",
-             meal_category_id: MealCategory.find_by(name: 'Vegetariano'))
+             meal_category_id: MealCategory.find_by(name: 'Carnes'))
 Meal.create!(title:"Porco", description: "Porção para dois", price:"35,99",
              meal_category_id: MealCategory.find_by(name: 'Carnes'))

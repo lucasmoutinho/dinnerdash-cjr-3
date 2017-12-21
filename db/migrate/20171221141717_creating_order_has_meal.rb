@@ -1,7 +1,7 @@
 class CreatingOrderHasMeal < ActiveRecord::Migration[5.1]
 
   def change
-    create_table :OrderHasMeals do |t|
+    create_table :order_has_meals do |t|
         t.column :price, :decimal
         t.column :quantity, :integer
         t.column :created_at, :datetime
