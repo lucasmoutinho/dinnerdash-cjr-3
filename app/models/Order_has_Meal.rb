@@ -3,8 +3,8 @@ class OrderHasMeal < ApplicationRecord
 	belongs_to :meal
 
 	validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
-  	validate :meal_present
- 	validate :cart_present
+  validate :meal_present
+ 	validate :order_present
 
  	before_save :finalize
 
@@ -27,9 +27,9 @@ private
     end
   end
 
-  def cart_present
-    if cart.nil?
-      errors.add(:cart, "is not a valid cart.")
+  def order_present
+    if order.nil?
+      errors.add(:order, "is not a valid order.")
     end
   end
 

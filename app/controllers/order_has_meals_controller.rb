@@ -1,50 +1,50 @@
 class OrderHasMealsController < ApplicationController
-	before_action :set_current_cart
+	before_action :set_current_order
 
 	def create
-		@cart.add_meal(params)
+		@order.add_meal(params)
 
-		if @cart.save
+		if @order.save
 			redirect_to root_path
 		else 
-			flash[:error] = 'There was a problem adding this item to your cart'
+			flash[:error] = 'There was a problem adding this item to your order'
 			redirect_to root_path
 		end
 	end
 
 	def destroy
 		@order_has_meal.destroy
-		redirect_to cart_path
+		redirect_to order_path
 	end
 	
 	# def create
-	#     @cart = set_cart
-	#     @@order_has_meal = @cart.OrderHasMeals.new(cart_item_params)
-	#     @cart.save
-	#     session[:cart_id] = @cart.id
+	#     @order = set_order
+	#     @@order_has_meal = @order.OrderHasMeals.new(order_item_params)
+	#     @order.save
+	#     session[:order_id] = @order.id
 	#   end
 
 	#   def update
-	#     @cart = set_cart
-	#     @@order_has_meal = @cart.OrderHasMeals.find(params[:id])
-	#     @@order_has_meal.update_attributes(cart_item_params)
-	#     @OrderHasMeals = @cart.OrderHasMeals
+	#     @order = set_order
+	#     @@order_has_meal = @order.OrderHasMeals.find(params[:id])
+	#     @@order_has_meal.update_attributes(order_item_params)
+	#     @OrderHasMeals = @order.OrderHasMeals
 	#   end
 
 	#   def destroy
-	#     @cart = set_cart
-	#     @@order_has_meal = @cart.OrderHasMeals.find(params[:id])
+	#     @order = set_order
+	#     @@order_has_meal = @order.OrderHasMeals.find(params[:id])
 	#     @@order_has_meal.destroy
-	#     @OrderHasMeals = @cart.OrderHasMeals
+	#     @OrderHasMeals = @order.OrderHasMeals
 	#   end
 
 	private
-		def set_cart_item
+		def set_order_item
 			@order_has_meal = OrderHasMeal.find(params[:id])
 		end
 
-		def cart_item_params
-			params.require(:order_has_meal).permit(:meal_id, :cart_id, :price, :quantity)
+		def order_item_params
+			params.require(:order_has_meal).permit(:meal_id, :order_id, :price, :quantity)
 		end	
 
 

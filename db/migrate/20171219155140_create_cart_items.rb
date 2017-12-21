@@ -10,6 +10,6 @@ class CreateCartItems < ActiveRecord::Migration[5.1]
 	end
 
 	def self.down
-		drop_table :cart_items
+		drop_table :order_has_meals
 	end
 end

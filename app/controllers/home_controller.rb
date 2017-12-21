@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-	attr_accessor :cart_item
+	attr_accessor :order_has_meal
 
   def index
   	@categories = MealCategory.all

@@ -10,24 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171219190132) do
+ActiveRecord::Schema.define(version: 20171221121101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "OrderHasMeals", force: :cascade do |t|
-    t.integer "meal_id"
-    t.integer "cart_id"
-    t.float "price"
-    t.integer "quantity"
-    t.datetime "created_at"
-  end
-
-  create_table "Orders", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "quantity"
-  end
 
   create_table "meal_categories", id: :serial, force: :cascade do |t|
     t.string "name"
@@ -41,19 +27,28 @@ ActiveRecord::Schema.define(version: 20171219190132) do
     t.float "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "meal_category_id"
+    t.integer "meal_category_id"
     t.string "picture"
     t.boolean "available"
     t.index ["meal_category_id"], name: "index_meals_on_meal_category_id"
   end
 
-  create_table "orders", id: :serial, force: :cascade do |t|
+  create_table "order_has_meals", force: :cascade do |t|
+    t.decimal "price"
+    t.integer "quantity"
+    t.datetime "created_at"
+    t.bigint "meal_id"
+    t.bigint "order_id"
+    t.index ["meal_id"], name: "index_order_has_meals_on_meal_id"
+    t.index ["order_id"], name: "index_order_has_meals_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "price"
+    t.integer "status"
     t.bigint "user_id"
-    t.bigint "cart_id"
-    t.string "status"
-    t.index ["cart_id"], name: "index_orders_on_cart_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -77,6 +72,6 @@ ActiveRecord::Schema.define(version: 20171219190132) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  add_foreign_key "orders", "Orders"
-  add_foreign_key "orders", "users"
+  add_foreign_key "order_has_meals", "meals"
+  add_foreign_key "order_has_meals", "orders"
 end

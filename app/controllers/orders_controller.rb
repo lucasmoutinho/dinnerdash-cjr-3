@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
 	def show
-    	@cart_items = cart.cart_items
+    	@order_items = order.order_has_meals
  	end
 end
