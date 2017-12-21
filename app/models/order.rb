@@ -15,7 +15,23 @@ class Order < ApplicationRecord
 		 								 quantity: how_many_more, price: meal_params[:price],
 		 								 order_id: self.id )
 		 end
-		 @new_order
+  end
+
+  def destroy_meal(meal_params)
+    @current_order_item = self.order_has_meals.find_by(meal_id: meal_params[:id])
+    @current_order_item ? @current_order_item.destroy : 0 #MENSAGEM QUE DIZ QUE DEU ERRO
+  end
+
+  def remove_meal(meal_params, how_many_less)
+    @current_order_item = self.order_has_meals.find_by(meal_id: meal_params[:id])
+
+    if @current_order_item
+      @current_order_item.quantity -= how_many_less
+      @current_order_item.quantity <= 0 ? @current_order_item.destroy : @current_order_item.save
+    else
+      #MENSAGEM QUE DIZ QUE DEU UM ERRO
+    end
+
   end
 
   def change_status(status_number)
