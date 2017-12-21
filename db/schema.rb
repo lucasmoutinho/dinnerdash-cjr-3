@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171217000717) do
+ActiveRecord::Schema.define(version: 20171221141717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,18 +24,32 @@ ActiveRecord::Schema.define(version: 20171217000717) do
   create_table "meals", id: :serial, force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.float "price"
+    t.decimal "price"
+    t.boolean "available"
+    t.string "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "meal_category_id"
-    t.string "picture"
-    t.boolean "available"
+    t.bigint "meal_category_id"
     t.index ["meal_category_id"], name: "index_meals_on_meal_category_id"
   end
 
-  create_table "orders", id: :serial, force: :cascade do |t|
+  create_table "order_has_meals", force: :cascade do |t|
+    t.decimal "price"
+    t.integer "quantity"
+    t.datetime "created_at"
+    t.bigint "meal_id"
+    t.bigint "order_id"
+    t.index ["meal_id"], name: "index_order_has_meals_on_meal_id"
+    t.index ["order_id"], name: "index_order_has_meals_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.decimal "price"
+    t.integer "status"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
@@ -58,4 +72,7 @@ ActiveRecord::Schema.define(version: 20171217000717) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "meals", "meal_categories"
+  add_foreign_key "order_has_meals", "meals"
+  add_foreign_key "order_has_meals", "orders"
 end
