@@ -11,6 +11,7 @@ class MealsController < ApplicationController
 
 	def index
 	  @meals = Meal.all
+	  #@@order_has_meal = set_current_order.OrderHasMeals.new
   	end	
 
 
@@ -62,6 +63,8 @@ class MealsController < ApplicationController
 	    render 'edit'
 	  end
 	end
+
+
  
 private
   def meal_params

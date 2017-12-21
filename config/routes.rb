@@ -13,5 +13,9 @@ Rails.application.routes.draw do
   	resources :meal_categories do
   		resources :meals
   	end
+
+  	resource :cart, only: [:show]
+  	resources :order_has_meals, only: [:create, :update, :destroy]
+  
  
 end

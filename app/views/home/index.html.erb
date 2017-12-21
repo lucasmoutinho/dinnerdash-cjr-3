@@ -14,21 +14,24 @@
 		<% @categories.each do |category| %>
 			<p class="category"><%= category.name %></p>
 
-			<% @meals.each do |meal| %>
-				<% if category.id == meal.meal_category_id %>
-			        <% unless meal.available == false %>
+			<% @meals.each do |m| %>
+				<% if category.id == m.meal_category_id %>
+			        <% unless m.available == false %>
 			        <div class="show-meal panel panel-default">
-			          <%= cl_image_tag(meal.picture, :crop => :fill, :height => 180, class: "image-meal") %>
-			          	<div class="name"><%= meal.title %></div>
+			          <%= cl_image_tag(m.picture, :crop => :fill, :height => 180, class: "image-meal") %>
+			          	<div class="name"><%= m.title %></div>
 			          	<div class="body">
-			            	<p class="description"><%= meal.description %></p>
-			            	<p class="price"><%= number_to_currency(meal.price, :unit => "R$ ", :separator => ",", :delimiter => ".") %> por porção</p>
+			            	<p class="description"><%= m.description %></p>
+			            	<p class="price"><%= number_to_currency(m.price, :unit => "R$ ", :separator => ",", :delimiter => ".") %> por porção</p>
 			            	<p class="description">Quantidade</p>
-			            	<!-- Só por questões de visualização e facilidade NÃO ESTÁ PRONTO-->
-			            	<%= form_for meal do |f| %>
-			            		<%= f.select :available, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], ["8", 8]], {}, {class: "form-control"} %>
+
+			            	<%= form_for @order_has_meal do |f| %>
+			            		<%= f.select :quantity, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], ["8", 8]], {}, {class: "form-control"} %>
+			            		<%= f.hidden_field :meal_id, value: m.id %>
+
+			            		<%= f.submit "adicionar ao meu prato", class: "btn btn-sm btn-success col-md-12 adicionar" %>
 			            	<% end %>
-			            	<%= link_to "adicionar ao meu prato", root_path, class: "btn btn-sm btn-success col-md-12 adicionar" %>
+
 			          </div>
 			        </div>
 			        <% end %>
