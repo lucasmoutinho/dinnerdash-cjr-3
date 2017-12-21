@@ -6,8 +6,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def set_current_cart 
-    session[:current_cart] ||= Cart.create.id
-    @cart = Cart.find(session[:current_cart])
+    session[:current_cart] ||= Order.create.id
+    @cart = Order.find(session[:current_cart])
   end
 
   protected

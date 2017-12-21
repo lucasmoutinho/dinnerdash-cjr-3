@@ -11,7 +11,7 @@ class MealsController < ApplicationController
 
 	def index
 	  @meals = Meal.all
-	  #@cart_item = set_current_cart.cart_items.new
+	  #@@order_has_meal = set_current_cart.OrderHasMeals.new
   	end	
 
 

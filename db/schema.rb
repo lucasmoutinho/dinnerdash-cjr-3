@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20171219190132) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "cart_items", force: :cascade do |t|
+  create_table "OrderHasMeals", force: :cascade do |t|
     t.integer "meal_id"
     t.integer "cart_id"
     t.float "price"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20171219190132) do
     t.datetime "created_at"
   end
 
-  create_table "carts", force: :cascade do |t|
+  create_table "Orders", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "quantity"
@@ -77,6 +77,6 @@ ActiveRecord::Schema.define(version: 20171219190132) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  add_foreign_key "orders", "carts"
+  add_foreign_key "orders", "Orders"
   add_foreign_key "orders", "users"
 end

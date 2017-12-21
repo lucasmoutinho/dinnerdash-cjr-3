@@ -1,4 +1,4 @@
-class CartsController < ApplicationController
+class OrdersController < ApplicationController
 	def show
     	@cart_items = cart.cart_items
  	end
