@@ -83,7 +83,7 @@
 	margin-top: -0.5em;
 }
 
-.backoffice-meal {
+.show-meal {
 	width: 23%;
 	margin-right: 2%;
 	float: left;
@@ -117,11 +117,25 @@
 			margin-bottom: 0.5em;
 		}
 	}
+	> .unavailable {
+		color: #fff;
+		position: relative;
+		float: left;
+		bottom: 7em;
+		margin-bottom: -5em;
+		text-align: center;
+		margin-left: 20%;
+		margin-right: 20%;
+	}
 }
 
 .image-meal {
 	width: 100%;
 	position: relative;
+}
+
+.unavailable-meal {
+	filter: brightness(40%);
 }
 
 .meal-button {

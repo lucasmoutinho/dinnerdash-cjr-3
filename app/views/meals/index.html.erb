@@ -5,8 +5,13 @@
   <div class="container">  
     <div>
       <% @meals.each do |meal| %>
-        <div class="backoffice-meal panel panel-default">
+        <div class="show-meal panel panel-default">
+        <% if meal.available == false %>
+          <%= cl_image_tag(meal.picture, :crop => :fill, :height => 180, class: "image-meal unavailable-meal") %>
+          <span class=unavailable>Refeição indisponível</span>
+        <% else %>
           <%= cl_image_tag(meal.picture, :crop => :fill, :height => 180, class: "image-meal") %>
+        <% end %>
           <div class="name"><%= meal.title %></div>
           <div class="body">
             <p class="description"><%= meal.description %></p>
