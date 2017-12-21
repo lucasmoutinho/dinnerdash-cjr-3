@@ -27,3 +27,5 @@ Meal.create!(title:"Cordeiro", description: "Porção para dois", price:"49,99",
              meal_category_id: MealCategory.find_by(name: 'Carnes'))
 Meal.create!(title:"Porco", description: "Porção para dois", price:"35,99",
              meal_category_id: MealCategory.find_by(name: 'Carnes'))
+
+User.create!(email: "cjr@cjr.com", password: "123456", admin: "true")
