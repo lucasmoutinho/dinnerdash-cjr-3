@@ -22,6 +22,13 @@ class OrdersController < ApplicationController
     	@order_items = Order.order_has_meals
 	end
 
+	def destroy
+		@order = Order.find(params[:id])
+		@order.delete
+
+		redirect_to meal_categories_path, notice: "Pedido foi apagada."
+	end
+
 	private
   		def order_params
     		params.require(:order).permit(:status)

@@ -59,3 +59,32 @@
 	color: #56ad56;
 	margin-bottom: 0.5em;
 }
+
+.show-order {
+	padding: 0;
+	margin-top: 1.5em;
+
+	> .imagem {
+		height: 100%;
+	}
+
+	> .order-text {
+		font-size: 14px;
+		> .description {
+			font-size: 14px;
+			color: #333333;
+			opacity: 0.65;
+		}
+	}
+	> .remove {
+		> .description {
+			font-size: 14px;
+			color: #333333;
+			opacity: 0.65;
+		}
+	}
+}
+
+.remove-button {
+	margin-top: 0.5em;
+}

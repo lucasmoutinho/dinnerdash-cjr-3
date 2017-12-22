@@ -13,6 +13,7 @@ class OrderHasMealsController < ApplicationController
 			redirect_to home_path
 		else
 			redirect_to home_path, notice: "Não foi possível adicionar ao prato"
+		end
 	end
 	
 	# def create

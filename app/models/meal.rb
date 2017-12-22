@@ -7,7 +7,7 @@ class Meal < ApplicationRecord
   after_initialize :init
 
   def init
-    self.available ||= true
+    # self.available ||= true
     self.meal_category_id ||= MealCategory.find_by(name: "Outros")
     #self.picture ||= "assets/image/default_picture.jpg" ARRUMAR AQUI PARA POR IMAGEM PADRÃO
   end

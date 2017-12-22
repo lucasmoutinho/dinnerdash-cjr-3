@@ -35,7 +35,7 @@
 			<% end %>
           </td>
           <td class="table-text"><%= number_to_currency(order.price, :unit => "R$ ", :separator => ",", :delimiter => ".") %></td>
-          <td><%= link_to 'ver itens pedidos', order_path(order), class: "ver"%></td>
+          <td><%= link_to 'ver itens pedidos', orders_path, class: "ver"%></td>
           <td><%= link_to 'editar', edit_order_path(order), class: "editar"%></td>
           <td><%= link_to "excluir", order_path(order.id), method: :delete,  class: "excluir"%></td>
         </tr>
