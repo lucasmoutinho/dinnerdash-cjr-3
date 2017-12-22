@@ -41,8 +41,11 @@
 .backoffice-theader {
 	background-color: #ddd;
 }
+
 .backoffice-tbody {
-	opacity: 0.75;
+	> .table-text{
+		opacity: 0.75;
+	}
 }
 
 .editar {
@@ -70,6 +73,20 @@
 }
 .excluir:visited {
 	color: #c00000;
+	text-decoration: none;
+}
+
+.ver {
+	color: #0000e6;
+	text-decoration: none;
+}
+.ver:hover {
+	color: #0000e6;
+	text-decoration: none;
+	opacity: 0.85;
+}
+.ver:visited {
+	color: #0000e6;
 	text-decoration: none;
 }
 

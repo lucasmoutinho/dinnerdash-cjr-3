@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     
     @meal = Meal.all 
     @meal.each do |m|
-    @_current_order.add_meal(m,0)
+      @_current_order.add_meal(m,0)
     end
     
     Order.find(session[:current_order])

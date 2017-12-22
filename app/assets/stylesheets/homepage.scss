@@ -25,11 +25,12 @@
 
 .show-meal {
 	> .body {
-		> .adicionar {
-			margin-top: 1em;
-			margin-bottom: 1em;
-		}
 	}
+}
+
+.adicionar-prato {
+	margin-top: 1em;
+	margin-bottom: 1em;
 }
 
 .home-finish {
@@ -52,4 +53,9 @@
 			margin-bottom: 3em;
 		}
 	}
+}
+
+.final-price {
+	color: #56ad56;
+	margin-bottom: 0.5em;
 }

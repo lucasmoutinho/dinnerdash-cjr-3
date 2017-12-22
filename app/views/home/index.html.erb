@@ -18,7 +18,7 @@
 				<% if category.id == m.meal_category_id %>
 			        <% unless m.available == false %>
 			        <div class="show-meal panel panel-default">
-			          <%= cl_image_tag(m.picture, :crop => :fill, :height => 180, class: "image-meal") %>
+			            <%= cl_image_tag(m.picture, :default_image => "default.jpg", :crop => :fill, :height => 180, class: "image-meal") %>
 			          	<div class="name"><%= m.title %></div>
 			          	<div class="body">
 			            	<p class="description"><%= m.description %></p>
@@ -31,14 +31,14 @@
 			            		<%= f.hidden_field @meal_id, value: m.id %>
 			            		<%= f.hidden_field @order_id, value: @order.id %>
 
-			            		<%= f.submit "adicionar ao meu prato", class: "btn btn-sm btn-success col-md-12 adicionar" %>
+			            		<%= f.submit "adicionar ao meu prato", class: "btn btn-sm btn-success col-md-12 adicionar-prato" %>
 			            	<% end %>
 
 			          </div>
 			        </div>
 			        <% end %>
 				<% end %>
-		      <% end %>
+		     <% end %>
 		<% end %>
 	</div>
 	<div class="home-finish">
@@ -46,8 +46,15 @@
 		<div class="finish-body container">
 			<p class="caption">Finalizou o seu prato?</p>
 			<p class="subcaption">Confira os itens adicionados antes de finalizar o pedido.</p>
-			<hr>
-			<p class="caption">Preço total do pedido: </p>
+			<% @order_has_meals = @order.order_has_meals %>
+			<% @order_has_meals.each do |om| %>
+				<div class="show-order col-sm-6">
+					<%= cl_image_tag(Meal.find(om.meal_id).picture, :crop => :fill, :height => 180, :width => 180, class: " col-sm-3") %>
+					<%= Meal.find(om.meal_id).title %>
+				</div>
+			<% end %>
+			<hr class="col-sm-12">
+			<p class="caption">Preço total do pedido: <span class="final-price"><%= number_to_currency(@order.price, :unit => "R$ ", :separator => ",", :delimiter => ".") %></span></p>
 			<% if user_signed_in? %>
 				<%= link_to 'finalizar e pagar', root_path, class: "btn btn-sm btn-success col-sm-2 button" %>
 			<% else %>
