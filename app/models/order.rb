@@ -57,8 +57,8 @@ class Order < ApplicationRecord
   end
 
   private
-3
+
   def price_sum
-    self[:price] = self.order_has_meals.map{|meal| meal.valid ? meal.quantity*meal.price : 0}.sum
+    self[:price] = self.order_has_meals.map{|meal| true ? meal.quantity*meal.price : 0}.sum
   end
 end
