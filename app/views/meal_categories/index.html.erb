@@ -13,9 +13,9 @@
      
       <% @meal_categories.each do |meal_category| %>
         <tr class="backoffice-tbody">
-          <td><%= meal_category.name %></td>
-          <td><%= meal_category.meals.length%></td>
-          <td><%= meal_category.created_at.strftime("%d/%m/%Y")%></td>
+          <td class="table-text"><%= meal_category.name %></td>
+          <td class="table-text"><%= meal_category.meals.length%></td>
+          <td class="table-text"><%= meal_category.created_at.strftime("%d/%m/%Y")%></td>
           <td><%= link_to 'editar', edit_meal_category_path(meal_category), class: "editar"%></td>
           <td><%= link_to "excluir", meal_category_path(meal_category.id), method: :delete,  class: "excluir"%></td>
         </tr>

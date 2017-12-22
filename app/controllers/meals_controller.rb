@@ -27,7 +27,6 @@ class MealsController < ApplicationController
 	  	@meal_category = MealCategory.find(params[:meal_category_id])
 
 		@meal = @meal_category.meals.create(meal_params)
-		@meal.available = true
 		if @meal.save
 			if params[:picture].present?
 	  			preloaded = Cloudinary::PreloadedFile.new(params[:picture])         

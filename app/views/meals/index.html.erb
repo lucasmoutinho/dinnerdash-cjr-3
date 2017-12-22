@@ -7,10 +7,18 @@
       <% @meals.each do |meal| %>
         <div class="show-meal panel panel-default">
         <% if meal.available == false %>
-          <%= cl_image_tag(meal.picture, :crop => :fill, :height => 180, class: "image-meal unavailable-meal") %>
+          <% if !meal.picture? %>
+            <%= cl_image_tag("sem_imagem.jpg", :crop => :fill, :height => 180, class: "image-meal unavailable-meal") %>
+          <% else %>
+            <%= cl_image_tag(meal.picture, :crop => :fill, :height => 180, class: "image-meal unavailable-meal") %>
+          <% end %>
           <span class=unavailable>Refeição indisponível</span>
         <% else %>
-          <%= cl_image_tag(meal.picture, :crop => :fill, :height => 180, class: "image-meal") %>
+          <% if !meal.picture? %>
+            <%= cl_image_tag("sem_imagem.jpg", :crop => :fill, :height => 180, class: "image-meal") %>
+          <% else %>
+            <%= cl_image_tag(meal.picture, :crop => :fill, :height => 180, class: "image-meal") %>
+          <% end %>
         <% end %>
           <div class="name"><%= meal.title %></div>
           <div class="body">

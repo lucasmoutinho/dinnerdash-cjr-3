@@ -18,25 +18,31 @@
 				<% if category.id == m.meal_category_id %>
 			        <% unless m.available == false %>
 			        <div class="show-meal panel panel-default">
-			          <%= cl_image_tag(m.picture, :crop => :fill, :height => 180, class: "image-meal") %>
+				        <% if !m.picture? %>
+							<%= cl_image_tag("sem_imagem.jpg", :crop => :fill, :height => 180, class: "image-meal") %>
+						<% else %>
+			            	<%= cl_image_tag(m.picture, :crop => :fill, :height => 180, class: "image-meal") %>
+			            <% end %>
 			          	<div class="name"><%= m.title %></div>
 			          	<div class="body">
 			            	<p class="description"><%= m.description %></p>
 			            	<p class="price"><%= number_to_currency(m.price, :unit => "R$ ", :separator => ",", :delimiter => ".") %> por porção</p>
 			            	<p class="description">Quantidade</p>
 
+							<% @order_has_meal = OrderHasMeal.find_by(order_id: @order.id, meal_id: m.id)%>
 			            	<%= form_for @order_has_meal do |f| %>
 			            		<%= f.select :quantity, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], ["8", 8]], {}, {class: "form-control"} %>
-			            		<%= f.hidden_field :meal_id, value: m.id %>
+			            		<%= f.hidden_field @meal_id, value: m.id %>
+			            		<%= f.hidden_field @order_id, value: @order.id %>
 
-			            		<%= f.submit "adicionar ao meu prato", class: "btn btn-sm btn-success col-md-12 adicionar" %>
+			            		<%= f.submit "adicionar ao meu prato", class: "btn btn-sm btn-success col-md-12 adicionar-prato" %>
 			            	<% end %>
 
 			          </div>
 			        </div>
 			        <% end %>
 				<% end %>
-		      <% end %>
+		     <% end %>
 		<% end %>
 	</div>
 	<div class="home-finish">
@@ -44,8 +50,33 @@
 		<div class="finish-body container">
 			<p class="caption">Finalizou o seu prato?</p>
 			<p class="subcaption">Confira os itens adicionados antes de finalizar o pedido.</p>
-			<hr>
-			<p class="caption">Preço total do pedido: </p>
+			<% @order_has_meals = @order.order_has_meals %>
+			<% @order_has_meals.each do |om| %>
+				<div class="show-order col-sm-6 container-fluid">
+					<% if !Meal.find(om.meal_id).picture? %>
+						<%= cl_image_tag("sem_imagem.jpg", :crop => :fill, :width => 300, class: "imagem col-sm-3") %>
+					<% else %>
+						<%= cl_image_tag(Meal.find(om.meal_id).picture, :crop => :fill, :width => 300, class: "imagem col-sm-3") %>
+					<% end %>
+					<div class="order-text col-sm-5">
+						<p><%= Meal.find(om.meal_id).title %></p>
+						<p class="description">Quantidade: <%= om.quantity %></p>
+						<p class="description">Preço unitário: <%= number_to_currency(Meal.find(om.meal_id).price, :unit => "R$ ", :separator => ",", :delimiter => ".") %></p>
+						<p class="description">Preço total: <%= number_to_currency(om.price, :unit => "R$ ", :separator => ",", :delimiter => ".") %></p>
+					</div>
+					<div class="remove col-sm-4">
+						<p class="description">Quantidade</p>
+						<%= form_for @order_has_meal do |f| %>
+
+			            		<%= f.select :quantity, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], ["8", 8]], {}, {class: "form-control col-sm-12"} %>
+
+			            		<%= f.submit "remover do meu prato", class: "remove-button btn btn-sm btn-danger btn-outline col-md-12" %>
+			            <% end %>
+					</div>
+				</div>
+			<% end %>
+			<hr class="col-sm-12">
+			<p class="caption">Preço total do pedido: <span class="final-price"><%= number_to_currency(@order.price, :unit => "R$ ", :separator => ",", :delimiter => ".") %></span></p>
 			<% if user_signed_in? %>
 				<%= link_to 'finalizar e pagar', root_path, class: "btn btn-sm btn-success col-sm-2 button" %>
 			<% else %>

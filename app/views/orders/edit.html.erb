@@ -1,0 +1,50 @@
+<div class="backoffice-page">
+  	<%= render 'layouts/backoffice' %>
+
+  	<div class="container">
+    	<h3><small>Editar pedido</small></h3>
+    	<hr class = "line col-sm-11 backoffice-line" >
+
+	  	<%= form_for @order do |f| %>
+
+			<p class="col-sm-6">
+		        <%= f.label :número, class: "form-label" %><br>
+		        <%= f.text_field :id, :value=> f.object.id , class: "form-control", id: "disabledInput", disabled: true %>
+		    </p>
+
+		    <p class="col-sm-6">
+      			<%= f.label :status, class: "form-label"%>
+      			<%= f.select :status, [["Pendente", 1], ["Entregue", 2], ["Cancelado", 0]], {}, {class: "form-control"} %>
+  			</p>
+		    
+		    <p class="col-sm-6">
+		        <%= f.label :data, class: "form-label" %><br>
+		        <% created_at_string = f.object.created_at && f.object.created_at.strftime("%d/%m/%Y") %>
+		        <%= f.text_field :created_at, :value=> created_at_string , class: "form-control", id: "disabledInput", disabled: true %>
+		    </p>
+
+		    <p class="col-sm-6">
+		        <%= f.label :usuário, class: "form-label" %><br>
+		        <% if f.object.user_id.nil? %>
+					<%= f.text_field :user_id, :value=> "Visitante" , class: "form-control", id: "disabledInput", disabled: true %>
+				<% else %>
+		        	<%= f.text_field :user_id, :value=> User.find(f.object.user_id) , class: "form-control", id: "disabledInput", disabled: true %>
+				<% end %>
+		    </p>
+
+		    <p class="col-sm-6">
+		        <%= f.label :preço_total, class: "form-label" %><br>
+		        <% price_string = f.object.price && number_to_currency(f.object.price, :unit => "R$ ", :separator => ",", :delimiter => ".") %>
+		        <%= f.text_field :price, :value=> price_string , class: "form-control", id: "disabledInput", disabled: true %>
+		    </p>
+		   
+		   
+		    <p class="col-sm-10">
+		        <br><%= f.submit "atualizar pedido", class: "btn btn-success col-sm-3"%>
+		        <%= link_to 'voltar', orders_path, class: "btn btn-gray col-sm-2" %>
+		      </p>
+	     <% end %>
+
+	</div>
+	<br>
+</div>

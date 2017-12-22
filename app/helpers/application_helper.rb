@@ -1,7 +1,7 @@
 module ApplicationHelper
-	def current_cart
-		Order.find(session[:current_cart])
+	def current_order
+		Order.find(session[:current_order])
 	rescue ActiveRecord::RecordNotFound
-		render text: "Carrinho não existe."
+		render text: "Pedido não existe."
 	end
 end

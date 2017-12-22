@@ -6,6 +6,16 @@ class OrderHasMealsController < ApplicationController
 		redirect_to order_path
 	end
 	
+	def update
+		@order_has_meal = OrderHasMeal.find_by(meal_id: @meal_id, order_id: @order_id)
+		@order_has_meal.quantity = :quantity
+		if @order_has_meal.save
+			redirect_to home_path
+		else
+			redirect_to home_path, notice: "Não foi possível adicionar ao prato"
+		end
+	end
+	
 	# def create
 	#     @order = set_order
 	#     @@order_has_meal = @order.OrderHasMeals.new(order_item_params)
