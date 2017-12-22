@@ -31,7 +31,7 @@ class Order < ApplicationRecord
 
     if @current_order_item
       @current_order_item.quantity -= how_many_less
-      @current_order_item.quantity <= 0 ? @current_order_item.destroy : @current_order_item.save
+      @current_order_item.quantity < 0 ? @current_order_item.destroy : @current_order_item.save
     else
       #MENSAGEM QUE DIZ QUE DEU UM ERRO
     end

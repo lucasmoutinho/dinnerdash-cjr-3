@@ -5,6 +5,13 @@ class OrderHasMealsController < ApplicationController
 		@order_has_meal.destroy
 		redirect_to order_path
 	end
+
+	def update
+		@order_has_meal = OrderHasMeal.find_by(meal_id: @meal_id, order_id: @order_id)
+		@order_has_meal.quantity = :quantity
+		@order_has_meal.save
+		redirect_to home_path
+	end
 	
 	# def create
 	#     @order = set_order

@@ -7,6 +7,13 @@ class ApplicationController < ActionController::Base
 
   def set_current_order
     session[:current_order] ||= Order.create.id
+    @_current_order = Order.find(session[:current_order])
+    
+    @meal = Meal.all 
+    @meal.each do |m|
+    @_current_order.add_meal(m,0)
+    end
+    
     Order.find(session[:current_order])
   end
 

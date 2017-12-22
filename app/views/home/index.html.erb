@@ -25,10 +25,11 @@
 			            	<p class="price"><%= number_to_currency(m.price, :unit => "R$ ", :separator => ",", :delimiter => ".") %> por porção</p>
 			            	<p class="description">Quantidade</p>
 
-							<% @order_has_meals = @order.order_has_meals.new %>
-			            	<%= form_for @order_has_meals do |f| %>
+							<% @order_has_meal = OrderHasMeal.find_by(order_id: @order.id, meal_id: m.id)%>
+			            	<%= form_for @order_has_meal do |f| %>
 			            		<%= f.select :quantity, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], ["8", 8]], {}, {class: "form-control"} %>
-			            		<%= f.hidden_field :meal_id, value: m.id %>
+			            		<%= f.hidden_field @meal_id, value: m.id %>
+			            		<%= f.hidden_field @order_id, value: @order.id %>
 
 			            		<%= f.submit "adicionar ao meu prato", class: "btn btn-sm btn-success col-md-12 adicionar" %>
 			            	<% end %>
