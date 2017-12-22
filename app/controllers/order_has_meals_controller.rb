@@ -6,6 +6,10 @@ class OrderHasMealsController < ApplicationController
 		redirect_to order_path
 	end
 
+	def create
+
+	end
+
 	def update
 		@order_has_meal = OrderHasMeal.find_by(meal_id: @meal_id, order_id: @order_id)
 		@order_has_meal.quantity = :quantity
